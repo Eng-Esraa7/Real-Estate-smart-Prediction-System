@@ -1,0 +1,114 @@
+﻿@model RealState.Models.SignUpModel
+
+@{
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/profileBar.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mohammad Sahragard">
+    <title>Responsive Profile Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- import font icon (fontawesome) -->
+    <script src="https://kit.fontawesome.com/b8b432d7d3.js" crossorigin="anonymous"></script>
+    <!-- import css file (style.css) -->
+    <link rel="stylesheet" href="~/css/userAco/profile.css">
+
+    <style>
+        body {
+            background-color: #0dc8e0;
+        }
+
+        .profile-card {
+            margin-top: 180px
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       
+            <div class="profile-card">
+                <div class="profile-header">
+                    <!-- profile header section -->
+                    <div class="main-profile">
+                        <img src="@Model.link" class="profile-image">
+
+                        @using (Html.BeginForm("profile", "UserAccount", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+
+                            <div class="round">
+                                <input type="file" class="form-control" name="file" accept="image/*">
+                                <i class="fa fa-camera" style="color:#fff;"></i>
+                            </div>
+
+                            <input type="submit" value="Save Changes" class="btn btn-success" style="position:absolute; background-color:green; width:120px; border-radius:10px; top:495px; left:715px;" />
+                        }
+                        <div class="profile-names">
+                            <h1 class="username">@Model.Name</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-body">
+                    <!-- profile body section -->
+                    <div class="profile-actions">
+                        <button class="follow">Follow</button>
+                        <button class="message">Message</button>
+                        <section class="bio">
+                            <div class="bio-header">
+                                <i class="fa fa-info-circle"></i>
+                                Bio
+                            </div>
+                            <p class="bio-text">
+                                @Model.Bio
+                            </p>
+                        </section>
+                    </div>
+
+                    <div class="account-info">
+                        <div class="data">
+                            <div class="important-data">
+                                <section class="data-item">
+                                    <h3 class="value">Rate</h3>
+                                </section>
+                                <section class="data-item">
+                                    <h3 class="value">Followers</h3>
+                                </section>
+                            </div>
+                            <div class="other-data">
+                                <section class="data-item">
+                                    <h3 class="value">4.6/5</h3>
+                                </section>
+                                <section class="data-item">
+                                    <h3 class="value">12K</h3>
+                                </section>
+                            </div>
+                        </div>
+
+                        <div class="profile-actions">
+                            <button onclick="location.href = '@Url.Action("EditAccount", "UserAccount" ,FormMethod.Get)'" class="follow btn1">Edit-account</button>
+                            <button class="message btn2">Delete-account</button>
+                            <section class="bio">
+                                <div class="bio-header">
+                                    <i class="fa fa-info-circle"></i>
+                                    Phone Number
+                                </div>
+                                <p class="bio-text">
+                                    <span>+02</span> @Model.PhoneNumber
+                                </p>
+                            </section>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+         
+    </div>
+</body>
+</html>

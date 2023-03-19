@@ -1,0 +1,134 @@
+/**Global */
+
+:root {
+    --color-main: #32749b;
+    --color-white: #fff;
+    --color-gray: #afafb6
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
+/**start states */
+
+.states {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.states .card {
+    height: 500px;
+    margin-top: 50px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin: 50px auto;
+}
+
+.states h2 {
+    color: var(--color-main);
+}
+
+.states .card img {
+    width: 100%;
+    height: 250px;
+}
+
+.states .card .buy {
+    background-color: var(--color-main);
+}
+
+.states .card .buy:hover {
+    background: #265069;
+}
+
+.states .card p {
+    height: 80px;
+    overflow: hidden;
+    text-align: right;
+}
+
+.states .card .btn {
+    padding: 5px 20px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.states .card h6 {
+    color: var(--color-main);
+    line-height: 1.5;
+}
+
+.states .fav {
+    color: red;
+}
+
+.states .card,
+.states .card i {
+    cursor: pointer;
+}
+
+
+/**start search */
+
+.search {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.search b {
+    font-size: 24px;
+}
+
+.search .form-control,
+.search .form-select {
+    width: auto;
+    display: inline;
+    height: 30px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.search .form-select {
+    width: 150px;
+}
+
+.search .form-control {
+    width: 300px;
+}
+
+.search input[type="submit"],
+.search .offers {
+    background: var(--color-main);
+    color: var(--color-white);
+    padding: 15px 20px;
+    font-size: 14px;
+    line-height: 0;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.search input[type="submit"]:hover,
+.search .offers:hover {
+    background: #265069;
+}
+
+.search .searchby {
+    color: var(--color-main);
+}
+
+.search .off {
+    margin: auto;
+    margin-right: initial;
+}

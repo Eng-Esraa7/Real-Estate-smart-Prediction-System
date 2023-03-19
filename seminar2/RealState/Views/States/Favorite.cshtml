@@ -1,0 +1,96 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<RealState.Models.State>
+
+@{
+    ViewBag.Title = "States";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/states.css">
+<style>
+    .fa-edit, .fa-trash {
+        color: #32749b;
+    }
+
+    .f a {
+        color: #000;
+        text-decoration: none;
+    }
+</style>
+<!--search-->
+<div class="search">
+    <form action="#">
+        <div class="row">
+            <div class="col-lg-auto">
+                <!--start search-->
+                @using (Html.BeginForm("States", "States", FormMethod.Get))
+                {
+                    <b class="searchby">Search By:</b>
+
+                    <select id="searchBy" name="searchBy" class="form-select">
+                        <option name="searchBy" id="price">Price</option>
+                        <option name="searchBy" id="rate">Rate</option>
+                        <option name="searchBy" id="city">City</option>
+                        <option name="searchBy" id="area">Area</option>
+                    </select>
+
+                    <input id="searching" name="searching" type="text" value="" class="form-control" />
+                    <input type="submit" value="Search" class="btn" />
+                    <!--End search-->
+                }
+            </div>
+            <div class="col-lg-auto off">
+                @Html.ActionLink("Buy", "States", new { searchBy = "buy", Searching = "Sell" }, new { @class = "btn offers" })
+                @Html.ActionLink("Rent", "States", new { searchBy = "rent", Searching = "Rent" }, new { @class = "btn offers" })
+                @Html.ActionLink("Offers", "States", new { searchBy = "offers", Searching = "Yes" }, new { @class = "btn offers" })
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--start States-->
+<div class="states">
+    <div class="container">
+        <h2 class="text-center mb-5">States</h2>
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="@item.link" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-10">
+                                    <h5 class="card-title">@item.Type</h5>
+                                </div>
+                                <div class="col-2 f">
+                                    @Html.ActionLink(" ", "AddFav", new { StateId = item.State_Id }, new { @class = "fa fa-heart" })
+                                </div>
+                            </div>
+                            <h6 class="price">@item.Price USD</h6>
+                            <p class="card-text">@item.Description</p>
+                            <div class="row">
+                                <div class="col-9">
+                                    @Html.ActionLink("Details", "Details", new { id = item.State_Id }, new { @class = "btn btn-primary buy" })
+                                </div>
+                                @if (item.user_Id == "-NQQVDZMcuDcE-6cBrEk")
+                                {
+                                    <div class="col-3">
+                                        <a class="fas fa-edit" href="/States/Edit/@item.State_Id"></a>
+                                        <a class="fa fa-trash" href="/States/Delete/@item.State_Id"></a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+        </div>
+    </div>
+</div>
+<!--end states-->
+
