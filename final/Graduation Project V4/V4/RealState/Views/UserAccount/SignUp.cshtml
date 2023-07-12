@@ -1,0 +1,122 @@
+﻿@model RealState.Models.SignUpModel
+
+@{
+    ViewBag.Title = "SignUp";
+
+}
+@{Layout = "";}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="~/css/userAco/SignUp.css">
+
+    <!-- Link For icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+</head>
+
+<div class="container">
+
+    <div class="formCode">
+        <!-- Login and register navbar -->
+        <header>
+            <ul class="switch">
+                <li> @Html.ActionLink("Login", "Login", "UserAccount", FormMethod.Post)</li>
+                <li> @Html.ActionLink("Register", "SignUp", "UserAccount")</li>
+            </ul>
+        </header>
+        <h1>Register</h1>
+        @using (Html.BeginForm())
+        {
+
+            <form action="">
+                <!-- username field -->
+                <div class="textfield">
+                    <!-- user icon -->
+                    <i class="fa-solid fa-user"></i>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "inp", @placeholder = "Enter your Name" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", style = "color:red; text-align; margin-left:100px;" })
+                </div>
+
+
+                <!-- Email field -->
+
+                <div class="textfield">
+                    <!-- Email icon -->
+                    <i class="fa-solid fa-envelope"></i>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "inp", @placeholder = "Enter your Email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", style = "color:red; text-align; margin-left:100px;" })
+                </div>
+
+                <!-- password field -->
+                <div class="textfield">
+                    <!-- password icon -->
+                    <i class="fa-solid fa-lock"></i>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "inp", @placeholder = "Enter your Password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", style = "color:red; text-align; margin-left:100px;" })
+
+                </div>
+
+                <!-- Confirm Password field -->
+                <div class="textfield">
+                    <!-- password icon -->
+                    <i class="fa-solid fa-lock"></i>
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "inp", @placeholder = "Confirm your Password" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger", style = "color:red; text-align; margin-left:100px;" })
+
+                </div>
+
+
+                <!-- Question field -->
+                <div class="select">
+
+                    <div name="format" id="format" class="format">
+                        @Html.DropDownListFor(model => model.Question, ViewBag.Questions as SelectList)
+                    </div>
+
+                    @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
+                </div>
+
+
+                <!-- answer field -->
+                <div class="textfield">
+                    <!-- answer icon -->
+                    <i class="fa-solid fa-question"></i>
+                    @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "inp", @placeholder = "Answer here..." } })
+                    @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger", style = "color:red; text-align; margin-left:100px;" })
+                </div>
+
+
+                <!-- Phone field -->
+                <div class="textfield">
+                    <!-- phone icon -->
+                    <i class="fa-solid fa-phone"></i>
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "inp", @placeholder = "Enter your Phone Number" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger", style = "color:red; text-align; margin-left:100px;" })
+                </div>
+
+                <div style="margin-top:15px; color:red; font-size:1.2em; text-align:center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
+                    @TempData["AlertMessageSignup"]
+                </div>
+
+                <input type="submit" class="btn" value="Register" style="color:#fff" />
+            </form>
+        }
+
+
+
+    </div>
+
+    <div class="LoginText">
+        <div class="title">
+            <h2>Real Estate</h2>
+            <div class="bar">
+                <p>In <span style="color:blueviolet;"> Real State Smart prediction website </span> <br> you can buy, sell and rent Estate in short time</p>
+            </div>
+        </div>
+    </div>
+</div>

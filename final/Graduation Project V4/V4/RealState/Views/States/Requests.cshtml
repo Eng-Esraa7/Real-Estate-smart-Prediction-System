@@ -1,0 +1,88 @@
+﻿@model RealState.Models.ViewModel
+@{
+    ViewBag.Title = "Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/Estates.css">
+<style>
+    .fa-edit, .fa-trash {
+        color: #32749b;
+    }
+
+    .f a {
+        color: #000;
+        text-decoration: none;
+    }
+</style>
+<!--start States-->
+<body>
+    <section class="main">
+        <h2 style="text-align:center; font-size:2rem; margin-top:15px;">My Requestes</h2>
+        <div class="full-boxer">
+            @for (int i = 0; i < Model.states.Count(); i += 3)
+            {
+                <div class="card-group">
+                    @for (int j = i; j < i + 3 && j < Model.states.Count(); j++)
+                    {
+                        var item = Model.states.ElementAt(j);
+                        <div class="card-container">
+                            <a href="/" class="hero-image-container">
+                                <div class="img-wrapper">
+                                    <img class="hero-image" src="@item.link" alt="Spinning glass cube" />
+                                </div>
+                            </a>
+                            <main class="main-content">
+                                <p><span style="color:white;">Type:</span> @item.BuyRent</p>
+                                <p><span style="color:white;">Description:</span> @item.Description</p>
+
+                                <div class="flex-row">
+                                    @if (item.Offers == "Yes")
+                                    {
+                                        <h2 style="color:#1be622;">@item.priceOffer USD</h2>
+                                        <del style="color:#1be622;" class="price">@item.Price USD</del>
+                                    }
+                                    else
+                                    {
+                                        <h2 style="color:#1be622;" class="price">@item.Price USD</h2>
+                                    }
+                                    <div class="coin-base">
+
+
+                                    </div>
+                                    <div class="time-left">
+                                        <div class="col-auto">
+                                            @Html.ActionLink(" Favorite", "AddFav", new { StateId = item.State_Id }, new { @class = "fa fa-heart" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
+                            <div class="card-attribute">
+                                <div class="profile-image">
+                                    @{
+                                        if (item.user_pic == "")
+                                        {
+                                        }
+                                        else
+                                        {
+                                            <img src="@item.user_pic" alt="avatar" class="small-avatar" />
+
+                                        }
+                                    }
+                                </div>
+
+                                <p onclick="goToController('@item.user_Id')">Uploaded By <span><a href="#"><br />@item.user_name</a></span></p>
+
+                                <div style="margin-left:20px;">
+                                    <a class="fa fa-trash" href="/States/RemoveRequest/@Model.requests[i].RequestId"></a>
+                                    @Html.ActionLink("Details", "Details", new { id = item.State_Id }, new { @class = "btn btn-primary buy" })
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </section>
+
+</body>

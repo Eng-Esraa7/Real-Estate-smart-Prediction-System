@@ -1,0 +1,54 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<RealState.Models.SignUpModel>
+
+@{
+    ViewBag.Title = "Review Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    function goToController(userid) {
+        window.location.href = '@Url.Action("profileWithUserId", "UserAccount")?userId=' + userid;
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Users</title>
+    <link rel="stylesheet" href="~/css/userAco/My_user_review.css">
+</head>
+
+
+<body>
+    <section class="main">
+        <div class="full-boxer">
+            @foreach (var item in Model)
+            { 
+                    <div class="comment-box">
+                        <div class="box-top">
+                            <div class="Profile">
+                                <div class="profile-image">
+                                    <img src="@item.link">
+                                </div>
+                                <div class="Name">
+                                    <strong onclick="goToController('@item.SignUp_ID')">@item.Name</strong>
+                                    <span name="Email">@item.Email</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <form method="post" action="@Url.Action("ReviewSentiment", "SentimentReviewRate", new { Seller_id = item.SignUp_ID })">
+                                <div class="form-group">
+                                    <label for="review">Review:</label>
+                                    <input type="text" id="review" name="review" class="form-control">
+                                    <input type="hidden" name="Seller_id" value="@item.SignUp_ID">
+                                </div>
+                                <button type="submit" class="btn" style="background-color: #32749b">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+            }
+        </div>
+    </section>
+</body>

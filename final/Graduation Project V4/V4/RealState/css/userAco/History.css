@@ -1,0 +1,148 @@
+﻿* {
+	margin: 0px;
+	padding: 0px;
+	font-family: sans-serif;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: whitesmoke;
+}
+
+.estate-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 20px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.estate-card {
+	box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	overflow: hidden;
+	margin:20px;
+}
+
+.estate-img img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+}
+
+.estate-info {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	background-color: #fff;
+}
+
+.estate-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+	.estate-header h2 {
+		margin: 0;
+		font-size: 25px;
+		color: black;
+		font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	}
+
+	.estate-header .price {
+		margin: 0;
+		margin-right:20px;
+		font-size: 1rem;
+		color: #4CAF50;
+	}
+
+	.estate-body {
+		margin-top: 10px;
+
+	}
+
+	.estate-body .reviewer {
+		margin-top: 10px;
+	}
+
+	.estate-body .reviewer span {
+		color: black;
+		font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+		font-size: 20px;
+		margin-right: 20px;
+	}
+
+
+	.estate-body .reviewer h3 {
+		margin: 0;
+		font-size: 15px;
+		color: #5e6f0a;	
+	}
+
+	.estate-body .review{
+		margin-top:20px;
+	}
+
+	.estate-body .review span {
+		color: black;
+		font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+		font-size: 20px;
+		margin-right: 20px;
+	}
+
+	.estate-body .review h3 {
+		margin-top: 3px;
+		font-size: 15px;
+		line-height: 1;
+		max-width:35ch;
+		color: #5e6f0a;
+	}
+.btn-back {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	background-color: #007bff;
+	border-radius: 0.25rem;
+	color: #fff;
+	border: none;
+	transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+	.btn-back:hover {
+		background-color: #0069d9;
+	}
+
+	.btn-back:focus,
+	.btn-back:active {
+		background-color: #0062cc;
+	}
+
+	.btn-back:disabled {
+		background-color: #6c757d;
+		color: #fff;
+		cursor: not-allowed;
+	}
+
+	.btn-back.buy {
+		background-color: #28a745;
+	}
+
+		.btn-back.buy:hover {
+			background-color: #218838;
+		}
+
+		.btn-back.buy:focus,
+		.btn-back.buy:active {
+			background-color: #1e7e34;
+		}
+
+</style >

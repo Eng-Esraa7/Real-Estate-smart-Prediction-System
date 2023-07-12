@@ -1,0 +1,120 @@
+﻿@model IEnumerable<RealState.Models.State>
+
+@{
+    ViewBag.Title = "ManageMyEstates";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/Estates.css">
+<style>
+    .fa-edit, .fa-trash {
+        color: #32749b;
+    }
+
+    .f a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .center.btn {
+        background: var(--color-main);
+        color: var(--color-white);
+        padding: 15px 20px;
+        font-size: 14px;
+        line-height: 0;
+        border-radius: 15px;
+    }
+</style>
+<!--start States-->
+<div class="states">
+    <div class="container">
+        <h2 style="text-align:center; font-size:2rem; margin-top:15px;">Manage My Estates</h2>
+        @if (ViewBag.selled == "no")
+        {
+            @Html.ActionLink("selled", "ManageMyEstates", new { selled = "yes" }, new { @class = "btn btn-primary buy center" })
+        }
+        else
+        {
+            <h2>Selled</h2>
+
+        }
+        <section class="main">
+            <div class="full-boxer">
+                @for (int i = 0; i < Model.Count(); i += 3)
+                {
+                    <div class="card-group">
+                        @for (int j = i; j < i + 3 && j < Model.Count(); j++)
+                        {
+                            var item = Model.ElementAt(j);
+                            <div class="card-container">
+                                <a href="/" class="hero-image-container">
+                                    <div class="img-wrapper">
+                                        <img class="hero-image" src="@item.link" alt="Spinning glass cube" />
+                                    </div>
+                                </a>
+                                <main class="main-content">
+                                    <p><span style="color:white;">Type:</span> @item.BuyRent</p>
+                                    <p><span style="color:white;">Description:</span> @item.Description</p>
+
+                                    <div class="flex-row">
+                                        @if (item.Offers == "Yes")
+                                        {
+                                            <h2 style="color:#1be622;">@item.priceOffer USD</h2>
+                                            <del style="color:#1be622;" class="price">@item.Price USD</del>
+                                        }
+                                        else
+                                        {
+                                            <h2 style="color:#1be622;" class="price">@item.Price USD</h2>
+                                        }
+                                        <div class="coin-base">
+
+
+                                        </div>
+                                        <div class="time-left">
+                                            <div class="col-auto">
+                                                @Html.ActionLink(" Favorite", "AddFav", new { StateId = item.State_Id }, new { @class = "fa fa-heart" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </main>
+                                <div class="card-attribute">
+                                    <div class="profile-image">
+                                        @{
+                                            if (item.user_pic == "")
+                                            {
+                                            }
+                                            else
+                                            {
+                                                <img src="@item.user_pic" alt="avatar" class="small-avatar" />
+
+                                            }
+                                        }
+                                    </div>
+
+                                    <p onclick="goToController('@item.user_Id')">Uploaded By <span><a href="#"><br />@item.user_name</a></span></p>
+                                    @{
+                                        if (item.user_Id == ViewBag.id)
+                                        {
+                                            <div style="margin-left:20px;">
+                                                <a class="fas fa-edit" href="/States/Edit/@item.State_Id"></a>
+                                                <a class="fa fa-trash" href="/States/Delete/@item.State_Id"></a>
+                                                @Html.ActionLink("Details", "Details", new { id = item.State_Id }, new { @class = "btn btn-primary buy" })
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div style="margin-left:60px;">
+                                                @Html.ActionLink("Details", "Details", new { id = item.State_Id }, new { @class = "btn btn-primary buy" })
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </section>
+
+    </div>
+</div>
+<!--end states-->

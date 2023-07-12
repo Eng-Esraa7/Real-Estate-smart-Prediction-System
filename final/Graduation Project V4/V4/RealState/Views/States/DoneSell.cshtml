@@ -1,0 +1,51 @@
+﻿@model RealState.Models.ViewModel
+
+@{
+    ViewBag.Title = "DoneSell";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/details.css">
+<style>
+    .center{
+        width:50%;
+        margin:auto;
+    }
+
+    .center .btn {
+        background: var(--color-main);
+        color: var(--color-white);
+        padding: 15px 20px;
+        font-size: 14px;
+        line-height: 0;
+        border-radius:15px;
+        margin-left:45%
+    }
+</style>
+<script>
+    function onOptionSelected() {
+        var selectedOption = document.getElementById('SelectedOption1').value;
+        return selectedOption;
+    }
+
+    function goToController() {
+        var req = onOptionSelected()
+        var url = '@Url.Action("VerifySell", "States")' + '?stateId=' + '@res()' + '&RequestuserId=' + req;
+        window.location.href = url;
+    }
+</script>
+@{
+    string res()
+    {
+        return Model.state.State_Id;
+    }
+
+}
+<div class="data states">
+    <h2 class="text-center mt-5 mb-5">DoneSell</h2>
+    <h2 class="text-center mb-5 h4">Select selled state By: </h2>
+    <div class="center">
+        @Html.DropDownListFor(m => m.requests, new SelectList(Model.requests, "requestUserId", "NameUserRequest"), "Requests Users", new { @class = "form-control", id = "SelectedOption1", onchange = "onOptionSelected()" })
+        <button class="btn btn-primary buy mt-3 mb-5" onclick="goToController()">Done</button>
+        @*@Html.ActionLink("Done", "VerifySell", new { stateId = Model.state.State_Id , RequestuserId = result}, new { @class = "btn btn-primary buy" })*@
+    </div>
+</div>

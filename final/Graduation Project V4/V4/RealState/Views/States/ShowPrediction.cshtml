@@ -1,0 +1,41 @@
+﻿@model RealState.Models.State
+@{
+    ViewBag.Title = "ShowPrediction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link rel="stylesheet" href="~/css/states.css">
+<link rel="stylesheet" href="~/css/style.css">
+<link rel="stylesheet" href="~/css/Investment.css">
+<style>
+    .states i.fa.fa-heart {
+        color: #000
+    }
+
+        .states i.fa.fa-heart.fav {
+            color: red
+        }
+</style>
+
+<!--start form-->
+<div class="container states">
+    <h2 class="text-center mb-5">We have predicted your price please choose what you will continue with</h2>
+    @using (Html.BeginForm("ShowPrediction", "States", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <label for="investment-amount">Predicted price:</label> <label>@ViewBag.Predicted</label>
+
+
+        <label for="investment-time">Your desired price:</label> <label>@ViewBag.Actual</label>
+
+        <div class="mt-3 mb-3">
+            <input type="submit" value="Edit the price" class="btn circule send" name="predict" />
+        </div>
+        <div class="mt-3 mb-3">
+            <input type="submit" value="Continue with the same price" class="btn circule send" />
+        </div>
+
+    }
+</div>
+<!--end form-->

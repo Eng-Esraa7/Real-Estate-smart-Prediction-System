@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "States";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/states.css">
+
+<!--search-->
+<div class="search">
+    <form action="#">
+        <div class="row">
+            <div class="col-lg-auto">
+                <!--start search-->
+                <form action="/Dresses/Dresses" method="get">
+                    <b class="searchby">Search By:</b>
+
+                    <select id="Select" class="form-select">
+                        <option id="price">Price</option>
+                        <option id="rate">Rate</option>
+                        <option id="city">City</option>
+                        <option id="area">Area</option>
+                    </select>
+
+                    <input id="searching" name="searching" type="text" value="" class="form-control" />
+                    <input type="submit" value="Search" class="btn" />
+                </form>
+                <!--End search-->
+            </div>
+            <div class="col-lg-auto off">
+                <button class="btn offers">Buy</button>
+                <button class="btn offers">Rent</button>
+                <button class="btn offers">Offers</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<!--start States-->
+<div class="states">
+    <div class="container">
+        <h2 class="text-center mb-5">States</h2>
+        <div class="row">
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/images/b1.jfif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Town House</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fa fa-heart"></i>
+                            </div>
+                        </div>
+                        <h6 class="price">120,0000 USD</h6>
+                        <p class="card-text">لسرعه البيع استلم فوري فيلا ١٩٧م مباني في #باديا #اكتوبر</p>
+                        <a href="#" class="btn btn-primary buy">Buy</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/images/b3.jfif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Twin House</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fa fa-heart"></i>
+                            </div>
+                        </div>
+                        <h6 class="price">120,0000 USD</h6>
+                        <p class="card-text">توين هاوس كمبوند يوتوبيا 360م بتسهيلات علي 15 سنة امام بالم هيلز</p>
+                        <a href="#" class="btn btn-primary buy">Buy</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/images/b2.jfif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Stand Alone Villa</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fa fa-heart fav"></i>
+                            </div>
+                        </div>
+                        <h6 class="price">120,0000 USD</h6>
+                        <p class="card-text">
+                            فيلا بكمبوند Palma على التسعين الشمالي سور Waterway 2 - تقسيط ٧ سنوات
+                        </p>
+                        <a href="#" class="btn btn-primary buy">Buy</a>
+                        <a href="#" class="btn btn-primary buy">Rent</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/images/b1.jfif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Town House</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fa fa-heart"></i>
+                            </div>
+                        </div>
+                        <h6 class="price">120,0000 USD</h6>
+                        <p class="card-text">لسرعه البيع استلم فوري فيلا ١٩٧م مباني في #باديا #اكتوبر</p>
+                        <a href="#" class="btn btn-primary buy">Buy</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/images/b3.jfif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Twin House</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fa fa-heart fav"></i>
+                            </div>
+                        </div>
+                        <h6 class="price">120,0000 USD</h6>
+                        <p class="card-text">توين هاوس كمبوند يوتوبيا 360م بتسهيلات علي 15 سنة امام بالم هيلز</p>
+                        <a href="#" class="btn btn-primary buy">Buy</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card" style="width: 18rem;">
+                    <img src="~/images/b2.jfif" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title">Stand Alone Villa</h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fa fa-heart"></i>
+                            </div>
+                        </div>
+                        <h6 class="price">120,0000 USD</h6>
+                        <p class="card-text">
+                            فيلا بكمبوند Palma على التسعين الشمالي سور Waterway 2 - تقسيط ٧ سنوات
+                        </p>
+                        <a href="#" class="btn btn-primary buy">Buy</a>
+                        <a href="#" class="btn btn-primary buy">Rent</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--end states-->

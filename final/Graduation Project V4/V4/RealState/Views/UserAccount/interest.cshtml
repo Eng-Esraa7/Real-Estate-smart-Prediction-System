@@ -1,0 +1,52 @@
+﻿@model RealState.Models.InterestedList
+
+@{
+    ViewBag.Title = "SignUp";
+
+}
+@{Layout = "";}
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interested</title>
+    <link rel="stylesheet" href="~/css/userAco/Interested.css">
+
+    <!-- Link For icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+
+</head>
+
+<body>
+    @using (Html.BeginForm("interest", "UserAccount", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <h2>Choose your interesting</h2>
+        <div class="container">
+            <div class="list">
+
+                @for (int i = 0; i < Model.interests.Count; i++)
+                {
+                    @Html.HiddenFor(m => Model.interests[i].Name)
+                    <div class="checkbox-container">
+                        @Html.CheckBoxFor(m => Model.interests[i].IsCheck, new { id = "item_" + i })
+                        <label for="item_@i">
+                            <div class="icon">
+                                <i class="@Model.interests[i].icon.ToString()"></i>
+                            </div>
+                            <div class="title">
+                                @Model.interests[i].Name
+                            </div>
+                        </label>
+                    </div>
+                }
+            </div>
+            <input type="submit" value="Next" class="btn" />
+        </div>
+    }
+
+</body>
+

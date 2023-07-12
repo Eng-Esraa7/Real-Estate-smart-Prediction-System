@@ -1,0 +1,166 @@
+﻿@model RealState.Models.ViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/details.css">
+
+<script>
+    function sendWhatsappMessage(phoneNumber) {
+        var url = 'https://web.whatsapp.com/send?phone=' + encodeURIComponent(phoneNumber);
+        window.open(url, '_blank');
+    }
+
+    function goToController() {
+        window.location.href = '@Url.Action("profileWithUserId", "UserAccount")?userId=' + '@res()';
+    }
+
+    function onOptionSelected() {
+        var selectedOption = document.getElementById('SelectedOption').value;
+        console.log(selectedOption);
+        window.location.href = '@Url.Action("profileWithUserId", "UserAccount")?userId=' + selectedOption;
+    }
+</script>
+@{
+    string res()
+    {
+        return Model.state.user_Id;
+    }
+
+}
+<h2 class="text-center mt-5 mb-5">Details</h2>
+<div class="content">
+    <div class="text-center details">
+        <dl class="dl-horizontal">
+            <dd>
+                <div class="img mb-3">
+                    <img src="@Model.state.link"
+                         class="card-img-top" alt="...">
+                </div>
+            </dd>
+
+            <div class="row data">
+                <div class="col-12 mb-3">
+                    @Model.state.Description
+                </div>
+                @*<a class="col-12 mb-3" onclick="goToController()" style="cursor:pointer">
+                    Owner
+                </a>*@
+                <div class="col-6">City</div>
+                <div class="col-6">@Model.state.City</div>
+
+                <div class="col-6">government</div>
+                <div class="col-6">@Model.state.government</div>
+
+                <div class="col-6">BuyRent</div>
+                <div class="col-6">@Model.state.BuyRent</div>
+                @if (Model.state.BuyRent.Contains("Rent"))
+                {
+                    <div class="col-6">Rentalperiod</div>
+                    <div class="col-6">@Model.state.Rentalperiod</div>
+                }
+
+                <div class="col-6">Price</div>
+                @if (Model.state.Offers.Contains("Yes"))
+                {
+                    <div class="col-6">
+                        <del class="price h6" style="color:red;">@Model.state.Price<b>USD</b></del>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-6">@Model.state.Price <b>USD</b></div>
+                }
+
+                <div class="col-6">Offers</div>
+                <div class="col-6">@Model.state.Offers</div>
+                @if (Model.state.Offers.Contains("Yes"))
+                {
+                    <div class="col-6">price Offer</div>
+                    <div class="col-6">@Model.state.priceOffer</div>
+                }
+
+                <div class="col-6">Area</div>
+                <div class="col-6">@Model.state.Area</div>
+
+                <div class="col-6">Bedrooms</div>
+                <div class="col-6">@Model.state.Bedrooms</div>
+
+                <div class="col-6">Bathrooms</div>
+                <div class="col-6">@Model.state.Bathrooms</div>
+
+                <div class="col-6">Furnished</div>
+                <div class="col-6">@Model.state.Furnished</div>
+
+                <div class="col-6">Security</div>
+                <div class="col-6">@Model.state.Security</div>
+
+                <div class="col-6">Balcony</div>
+                <div class="col-6">@Model.state.Balcony</div>
+
+                <div class="col-6">Private_Garden</div>
+                <div class="col-6">@Model.state.Private_Garden</div>
+
+                <div class="col-6">Pets_Allowed</div>
+                <div class="col-6">@Model.state.Pets_Allowed</div>
+
+                <div class="col-6">Covered_Parking</div>
+                <div class="col-6">@Model.state.Covered_Parking</div>
+
+                <div class="col-6">Maids_Room</div>
+                <div class="col-6">@Model.state.Maids_Room</div>
+
+                <div class="col-6">Electricity_Meter</div>
+                <div class="col-6">@Model.state.Electricity_Meter</div>
+
+                <div class="col-6">Natural_Gas</div>
+                <div class="col-6">@Model.state.Natural_Gas</div>
+
+                <div class="col-6">Landline</div>
+                <div class="col-6">@Model.state.Landline</div>
+
+                <div class="col-6">Pool</div>
+                <div class="col-6">@Model.state.Pool</div>
+
+                <div class="col-6">Central_heating</div>
+                <div class="col-6">@Model.state.Central_heating</div>
+
+                <div class="col-6">Built_in_Kitchen_Appliances</div>
+                <div class="col-6">@Model.state.Built_in_Kitchen_Appliances</div>
+
+                <div class="col-6">Elevator</div>
+                <div class="col-6">@Model.state.Elevator</div>
+
+                <div class="col-6">PaymentOption</div>
+                <div class="col-6">@Model.state.PaymentOption</div>
+            </div>
+
+        </dl>
+
+        @if (Model.state.BuyRent.Contains("Sell"))
+        {
+
+            using (Html.BeginForm("SendEmail", "States", new { stateId = Model.state.State_Id }))
+            {
+                <button type="submit" class="btn btn-primary buy">Buy</button>
+            }
+        }
+        @if (Model.state.BuyRent.Contains("Rent"))
+        {
+            using (Html.BeginForm("SendEmail", "States", new { stateId = Model.state.State_Id }))
+            {
+                <button type="submit" class="btn btn-primary buy">Rent</button>
+            }
+        }
+        @if (Model.state.user_Id == ViewBag.id)
+        {
+            @Html.DropDownListFor(m => m.requests, new SelectList(Model.requests, "requestUserId", "NameUserRequest"), "Requests Users", new { @class = "form-control", id = "SelectedOption", onchange = "onOptionSelected()" })
+            @Html.ActionLink("Done Sell", "DoneSell", new { stateId = Model.state.State_Id }, new { @class = "btn btn-primary buy" })
+        }
+        <p>
+            @Html.ActionLink("Back to List", "States", null, new { @class = "btn btn-primary buy" })
+        </p>
+    </div>
+</div>
+

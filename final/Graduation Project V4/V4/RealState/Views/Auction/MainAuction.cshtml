@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "MainAuction";
+    Layout = null;
+}
+<link rel="stylesheet" href="~/css/mainAuction.css">
+<style>
+    .images{width:100%}
+</style>
+<style>
+    .back {
+        background: #fff;
+        color: #fff;
+        padding: 15px 20px;
+        font-size: 14px;
+        line-height: 0;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+        margin-top:250px;
+        cursor:pointer;
+        text-decoration:none;
+        color:#000;
+    }
+
+        .back:hover {
+            background: #265069;
+        }
+</style>
+<div class="container">
+    <h1>Villa</h1>
+    <div class="left">
+        <div class="Owner">
+            <div class="caption">
+                <img src="~/images/testi-thumb.png" alt="...">
+                <h4>Eren Yeager<br><span> The Owner</span></h4>
+
+            </div>
+        </div>
+
+        <div class="Estate">
+            <div class="slider">
+                <div class="images">
+                    <input type="radio" name="slide" id="img1" checked>
+                    <input type="radio" name="slide" id="img2">
+                    <input type="radio" name="slide" id="img3">
+                    <input type="radio" name="slide" id="img4">
+
+                    <img src="~/images/b1.jpeg" class="m1" alt="img1">
+                    <img src="~/images/b2.jpeg" class="m2" alt="img2">
+                    <img src="~/images/b3.jpeg" class="m3" alt="img3">
+                    <img src="~/images/b4.jpeg" class="m4" alt="img4">
+                </div>
+                <div class="dots">
+                    <label for="img1"></label>
+                    <label for="img2"></label>
+                    <label for="img3"></label>
+                    <label for="img4"></label>
+                </div>
+            </div>
+
+
+            <div class="content">
+                <div class="details">
+                    <h2>Description </h2><br><span class="desc">some details about the Estate</span> </h2>
+                    <div class="important-data">
+                        <h3>Start-Price <br><span>500$</span></h3>
+                        <h3>start-time <br><span>08:30:00</span></h3>
+                        <h3>Ends-in <br><span>0:50:20</span></h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="right">
+
+        <div class="comments">
+            <textarea class="form-control ml-1 shadow-none textarea"></textarea>
+        </div>
+
+        <div class="btnnns">
+            <button class="btn " type="button">Post</button>
+            <button class="btn1" type="button">Cancel</button>
+            @Html.ActionLink("Back to List","States", "States", null, new { @class = "btn2 back" })
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,381 @@
+﻿@model RealState.Models.State
+
+@{
+    ViewBag.Title = "CreateState";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/states.css">
+<link rel="stylesheet" href="~/css/sell.css">
+<link rel="stylesheet" href="~/css/details.css">
+<style>
+    .bold {
+        font-weight: bold
+    }
+</style>
+<script>
+    function toggleTextbox() {
+        var dropdown = document.getElementById("dropdown");
+        var textbox = document.getElementById("textbox");
+
+        if (dropdown.value === "Rent") {
+            textbox.style.display = "block";
+        } else {
+            textbox.style.display = "none";
+        }
+    }
+    function toggleTextboxoffer() {
+        var dropdown = document.getElementById("dropdownoffer");
+        var textbox = document.getElementById("textboxoffer");
+
+        if (dropdown.value === "Yes") {
+            textbox.style.display = "block";
+        } else {
+            textbox.style.display = "none";
+        }
+    }
+</script>
+@{
+    var items = new List<SelectListItem>
+{
+        new SelectListItem { Value = "Ad Daqahliyah", Text = "Ad Daqahliyah" },
+        new SelectListItem { Value = "Al Bahr al Ahmar", Text = "Al Bahr al Ahmar" },
+        new SelectListItem { Value = "Al Buheira", Text = "Al Buheira" },
+        new SelectListItem { Value = "Al Fayyum", Text = "Al Fayyum" },
+        new SelectListItem { Value = "Al Gharbiyah", Text = "Al Gharbiyah" },
+        new SelectListItem { Value = "Al Iskandariyah", Text = "Al Iskandariyah" },
+        new SelectListItem { Value = "Al Isma'iliyah", Text = "Al Isma'iliyah" },
+        new SelectListItem { Value = "Al Jizah", Text = "Al Jizah" },
+        new SelectListItem { Value = "Al Minufiyah", Text = "Al Minufiyah" },
+        new SelectListItem { Value = "Al Minya", Text = "Al Minya" },
+        new SelectListItem { Value = "Cairo", Text = "Cairo" },
+        new SelectListItem { Value = "Al Qalyubiyah", Text = "Al Qalyubiyah" },
+        new SelectListItem { Value = "l Wadi al AJadid", Text = "l Wadi al AJadid" },
+        new SelectListItem { Value = "Ash Sharqiyah", Text = "Ash Sharqiyah" },
+        new SelectListItem { Value = "Aswan", Text = "Aswan" },
+        new SelectListItem { Value = "Asyut", Text = "Asyut" },
+        new SelectListItem { Value = "Bani Suwayf", Text = "Bani Suwayf" },
+        new SelectListItem { Value = "Port Said", Text = "Port Said" },
+        new SelectListItem { Value = "South Sinai", Text = "South Sinai" },
+        new SelectListItem { Value = "Kafr ash Shaykh", Text = "Kafr ash Shaykh" },
+        new SelectListItem { Value = "Matruh", Text = "Matruh" },
+        new SelectListItem { Value = "Qina", Text = "Qina" },
+        new SelectListItem { Value = "North Sinai", Text = "North Sinai" },
+        new SelectListItem { Value = "Suhaj", Text = "Suhaj" },
+        new SelectListItem { Value = "Dumyat", Text = "Dumyat" },
+
+    };
+}
+@using (Html.BeginForm("CreateState", "States", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <!--start sell-->
+    <div class="states">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h2 class="text-center mb-0">Sell & Rent</h2>
+    </div>
+    <div class="search">
+        <form action="#">
+            <div class="row text-center sell">
+                <b class="searchby">Image Of Your EState</b>
+                <div class="mb-1 mt-3">
+                    <input type="file" class="form-control" name="file" accept="image/*" required />
+                </div>
+                <b class="searchby" for="BuyRent">EState:</b>
+
+                @Html.DropDownListFor(m => m.BuyRent,
+                new List<SelectListItem> {
+                new SelectListItem{ Text="Sell",Value="Sell"},
+                new SelectListItem{ Text="Rent",Value="Rent"}
+                //new SelectListItem{ Text="Sell & Rent",Value="both"}
+                }
+                , new { @class = "form-control", onchange = "toggleTextbox()", id = "dropdown" })
+
+                @Html.ValidationMessageFor(model => model.BuyRent, "", new { @class = "text-danger" })
+                <div class="" style="display:none" id="textbox">
+                    <div class="mb-3 mt-3">
+                        <div class="form-group">
+                            <b class="searchby" for="Rentalperiod">Rental period:</b>
+                            <div class="">
+                                @Html.EditorFor(model => model.Rentalperiod, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Rentalperiod, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 mt-3">
+                    @*<input type="number" class="form-control" placeholder="price">*@
+                    <div class="form-group">
+                        <b class="searchby">
+                            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </b>
+                        <div class="">
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    @*<input type="number" class="form-control" id="area" placeholder="area">*@
+                    <div class="form-group">
+                        <b class="searchby">
+                            @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </b>
+                        <div class="">
+                            @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    @*<input type="text" class="form-control" id="city" placeholder="City">*@
+                    <div class="form-group">
+                        <b class="searchby">
+                            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </b>
+                        <div class="">
+                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <b class="searchby">
+                                @Html.LabelFor(model => model.government, htmlAttributes: new { @class = "control-label col-md-2" })
+                            </b>
+                            <div class="">
+                                @Html.DropDownListFor(model => model.government, new SelectList(items, "Value", "Text"), "Select government", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.government, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    @* <input type="number" class="form-control" placeholder="bedrooms">*@
+                    <div class="form-group">
+                        <b class="searchby">
+                            @Html.LabelFor(model => model.Bedrooms, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </b>
+                        <div class="">
+                            @Html.EditorFor(model => model.Bedrooms, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Bedrooms, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    @*<input type="number" class="form-control" id="bathrooms" placeholder="bathrooms">*@
+                    <div class="form-group">
+                        <b class="searchby">
+                            @Html.LabelFor(model => model.Bathrooms, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </b>
+                        <div class="">
+                            @Html.EditorFor(model => model.Bathrooms, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Bathrooms, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-box message-box">
+                    <div class="form-group">
+                        <b class="searchby">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </b>
+                        <div class="">
+                            @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @*<textarea name="msg" id="textarea" placeholder="description" class="form-control"
+                        rows="10"></textarea>*@
+                </div>
+
+                <b class="searchby">Furnished:</b>
+                @Html.DropDownListFor(m => m.Furnished,
+               new List<SelectListItem> {
+               new SelectListItem{ Text="Yes"},
+               new SelectListItem{ Text="No"},
+               new SelectListItem{ Text="Unknown"}
+               }
+               , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Furnished, "", new { @class = "text-danger" })
+
+                <b class="searchby">Security:</b>
+
+                @Html.DropDownListFor(m => m.Security,
+               new List<SelectListItem> {
+               new SelectListItem{ Text="Available"},
+               new SelectListItem{ Text="Not Available"}
+               }
+               , new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Security, "", new { @class = "text-danger" })
+
+                <b class="searchby">Balcony:</b>
+
+                @Html.DropDownListFor(m => m.Balcony,
+              new List<SelectListItem> {
+              new SelectListItem{ Text="Available"},
+              new SelectListItem{ Text="Not Available"}
+              }
+              , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Balcony, "", new { @class = "text-danger" })
+
+
+                <b class="searchby">Private_Garden:</b>
+
+                @Html.DropDownListFor(m => m.Private_Garden,
+                new List<SelectListItem> {
+                new SelectListItem{ Text="Available"},
+                new SelectListItem{ Text="Not Available"}
+                }
+                , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Private_Garden, "", new { @class = "text-danger" })
+
+
+                <b class="searchby">Pets_allowed:</b>
+
+                @Html.DropDownListFor(m => m.Pets_Allowed,
+             new List<SelectListItem> {
+             new SelectListItem{ Text="Available"},
+             new SelectListItem{ Text="Not Available"}
+             }
+             , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Pets_Allowed, "", new { @class = "text-danger" })
+
+                <b class="searchby">Covered_Parking:</b>
+
+                @Html.DropDownListFor(m => m.Covered_Parking,
+             new List<SelectListItem> {
+             new SelectListItem{ Text="Available"},
+             new SelectListItem{ Text="Not Available"}
+             }
+             , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Covered_Parking, "", new { @class = "text-danger" })
+
+                <b class="searchby">maids_Room:</b>
+
+                @Html.DropDownListFor(m => m.Maids_Room,
+             new List<SelectListItem> {
+             new SelectListItem{ Text="Available"},
+             new SelectListItem{ Text="Not Available"}
+             }
+             , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Maids_Room, "", new { @class = "text-danger" })
+
+                <b class="searchby">Electricity_Meter:</b>
+
+                @Html.DropDownListFor(m => m.Electricity_Meter,
+             new List<SelectListItem> {
+             new SelectListItem{ Text="Available"},
+             new SelectListItem{ Text="Not Available"}
+             }
+             , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Electricity_Meter, "", new { @class = "text-danger" })
+
+                <b class="searchby">Natueal_Gas:</b>
+
+                @Html.DropDownListFor(m => m.Natural_Gas,
+              new List<SelectListItem> {
+              new SelectListItem{ Text="Available"},
+              new SelectListItem{ Text="Not Available"}
+              }
+              , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Natural_Gas, "", new { @class = "text-danger" })
+
+                <b class="searchby">Landline:</b>
+
+                @Html.DropDownListFor(m => m.Landline,
+             new List<SelectListItem> {
+             new SelectListItem{ Text="Available"},
+             new SelectListItem{ Text="Not Available"}
+             }
+             , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Landline, "", new { @class = "text-danger" })
+
+                <b class="searchby">Pool:</b>
+
+                @Html.DropDownListFor(m => m.Pool,
+             new List<SelectListItem> {
+             new SelectListItem{ Text="Available"},
+             new SelectListItem{ Text="Not Available"}
+             }
+             , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Pool, "", new { @class = "text-danger" })
+
+                <b class="searchby">Central heating:</b>
+
+                @Html.DropDownListFor(m => m.Central_heating,
+            new List<SelectListItem> {
+            new SelectListItem{ Text="Available"},
+            new SelectListItem{ Text="Not Available"}
+            }
+            , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Central_heating, "", new { @class = "text-danger" })
+
+                <b class="searchby">Built_in_kitchen_Appliances:</b>
+
+                @Html.DropDownListFor(m => m.Built_in_Kitchen_Appliances,
+            new List<SelectListItem> {
+            new SelectListItem{ Text="Available"},
+            new SelectListItem{ Text="Not Available"}
+            }
+            , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Built_in_Kitchen_Appliances, "", new { @class = "text-danger" })
+
+                <b class="searchby">Elevator:</b>
+
+                @Html.DropDownListFor(m => m.Elevator,
+            new List<SelectListItem> {
+            new SelectListItem{ Text="Available"},
+            new SelectListItem{ Text="Not Available"}
+            }
+            , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Elevator, "", new { @class = "text-danger" })
+
+                <b class="searchby">Offer:</b>
+
+                @Html.DropDownListFor(m => m.Offers,
+            new List<SelectListItem> {
+            new SelectListItem{ Text="No",Value="No"},
+            new SelectListItem{ Text="Yes",Value="Yes"}
+            }
+            , new { @class = "form-control", onchange = "toggleTextboxoffer()", id = "dropdownoffer" })
+                @Html.ValidationMessageFor(model => model.Offers, "", new { @class = "text-danger" })
+
+                <div class="mt-4" style="display:none" id="textboxoffer">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <b class="searchby" for="priceOffer">Price Offer:</b>
+                            <div class="">
+                                @Html.EditorFor(model => model.priceOffer, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.priceOffer, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <b class="searchby">Payment_option:</b>
+
+                @Html.DropDownListFor(m => m.PaymentOption,
+            new List<SelectListItem> {
+            new SelectListItem{ Text="Cash"},
+            new SelectListItem{ Text="installment"},
+                new SelectListItem{ Text="Unknowns"}
+            }
+            , new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaymentOption, "", new { @class = "text-danger" })
+
+                <div class="mt-3 mb-3">
+                    <input type="submit" value="Create" class="btn circule send" />
+                </div>
+
+            </div>
+
+        </form>
+        <div class="details">
+            @Html.ActionLink("Back to List", "States", null, new { @class = "btn btn-primary circule buy" })
+        </div>
+
+    </div>
+
+}
+

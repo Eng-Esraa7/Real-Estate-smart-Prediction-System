@@ -1,0 +1,56 @@
+﻿@model RealState.Models.govrnee
+
+@{
+    ViewBag.Title = "Recommend Governorate";
+
+}
+@{Layout = "";}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommend Governorate</title>
+    <link rel="stylesheet" href="~/css/userAco/recomgov.css">
+
+    <!-- Link For icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+</head>
+
+<div class="container">
+
+
+    @Html.ActionLink("Home", "States", "States")
+    @using (Html.BeginForm("recommend_govrn", "UserAccount", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <form action="">
+
+            <!-- Question field -->
+            <div class="select">
+                <div name="format" id="format" class="format">
+                    @Html.DropDownListFor(model => model.Question, ViewBag.govern as SelectList , new {@name = "Govern"})
+                </div>
+                @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
+            </div>
+
+            <ul>
+                @if (Model.Strings != null)
+                {
+                    foreach (var str in Model.Strings)
+                    {
+                        <li>@str</li>
+                    }
+                }
+            </ul>
+
+            <input type="submit" class="btn" value="okey" />
+        </form>
+
+
+    }
+
+
+</div> 

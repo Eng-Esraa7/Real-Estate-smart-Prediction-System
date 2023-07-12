@@ -1,0 +1,29 @@
+﻿@model IEnumerable<RealState.Models.ContactUs>
+
+@{
+    ViewBag.Title = "ShowContact";
+    Layout = "~/Views/Shared/AdminPage.cshtml";
+}
+<link rel="stylesheet" href="~/css/contactus.css">
+
+<h2 class="text-center mt-5 mb-5">Show ContactUs Messages</h2>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">@item.Msg</p>
+                        <div class="card-links">
+                            <a href="@Url.Action("profileWithUserId", "UserAccount", new { userId = item.userId })" class="btn btn-primary" style="background: #32749b">View User Profile</a>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.contactId }, new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

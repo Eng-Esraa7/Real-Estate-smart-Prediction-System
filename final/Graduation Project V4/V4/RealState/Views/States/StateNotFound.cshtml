@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "NotFound";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .notfound a {
+        margin-left: 46%;
+        border-radius:20px
+    }
+</style>
+<div class="notfound mt-5">
+    <h2 class="text-center">NotFound</h2>
+    @Html.ActionLink("Back to List", "States", null, new { @class = "btn buy btn-primary mt-5 mb-5" })
+</div>
+

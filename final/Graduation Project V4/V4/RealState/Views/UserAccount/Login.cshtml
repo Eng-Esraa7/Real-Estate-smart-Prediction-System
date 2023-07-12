@@ -1,0 +1,74 @@
+﻿@model RealState.Models.LoginviewModel
+
+@{
+    ViewBag.Title = "Login";
+
+}
+@{Layout = "";}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="~/css/userAco/Login.css">
+
+    <!-- Link For icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+</head>
+
+<div class="container">
+
+    <div class="formCode">
+        <!-- Login and register navbar -->
+        <header>
+            <ul class="switch">
+                <li> @Html.ActionLink("Login", "Login", "UserAccount", FormMethod.Post)</li>
+                <li> @Html.ActionLink("Register", "SignUp", "UserAccount")</li>
+            </ul>
+        </header>
+        <h1>Login</h1>
+        @using (Html.BeginForm())
+        {
+
+            <form action="">
+
+                <!-- Email field -->
+                <div class="textfield">
+                    <!-- Email icon -->
+                    <i class="fa-solid fa-envelope"></i>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "inp", @placeholder = "Enter your Email", @name = "Email" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", style = "color:red; text-align; margin-left:80px;" })
+                </div>
+
+                <!-- password field -->
+                <div class="textfield">
+                    <!-- password icon -->
+                    <i class="fa-solid fa-lock"></i>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "inp", @placeholder = "Enter your Password", @name = "password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", style = "color:red; text-align; margin-left:80px;" })
+
+                </div>
+
+                <span class="forget"> @Html.ActionLink("Forget", "ForgetPassword", "UserAccount", FormMethod.Get) my password</span>
+
+                <div style="color:red; font-size:1.2em; text-align:center; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; ">
+                    @TempData["AlertMessageSignup"]
+                </div>
+
+                <input type="submit" class="btn" value="Login" style="color:#fff"/>
+            </form>
+        }
+    </div>
+
+    <div class="LoginText">
+        <div class="title">
+            <h2>Real Estate</h2>
+            <div class="bar">
+                <p>In <span style="color:blueviolet;"> Real State Smart prediction website </span> <br> you can buy, sell and rent Estate in short time</p>
+            </div>
+        </div>
+    </div>
+</div>

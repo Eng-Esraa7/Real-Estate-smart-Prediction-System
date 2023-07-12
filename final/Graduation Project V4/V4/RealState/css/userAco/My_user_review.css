@@ -1,0 +1,117 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 150px;
+}
+
+.full-boxer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.box-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.comment-box:hover {
+    margin-top: 12px;
+}
+
+.comment-box {
+    width: 500px;
+    background: white;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow:3px 5px 3px 5px rgb(10, 42, 63, 0.20);
+}
+
+.Profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile-image {
+    width: 70px;
+    height: 70px;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.3);
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+    .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+.Name {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+    .Name strong {
+        color: black;
+        font-size: 18px;
+    }
+
+    .Name span {
+        color: gray;
+        margin-top: 2px;
+    }
+
+.comment form {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment .form-group {
+    margin-bottom: 10px;
+}
+
+.comment label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid gray;
+}
+
+.comment button[type="submit"] {
+    background-color: blue;
+    color: white;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+
+.comment button[type="submit"]:hover {
+    background-color: darkblue;
+}
